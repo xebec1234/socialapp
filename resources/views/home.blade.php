@@ -22,6 +22,22 @@
                 <button>Create Post</button>
             </form>
         </div>
+        <div style="border: 3px solid black; margin-top: 20px; padding:20px;">
+            <h2>All Posts</h2>
+            @foreach($posts as $post)
+            <div style="background-color: grey; padding: 10px;">
+                <h3>{{$post['title']}} by {{$post->user->name}}</h3>
+                <p></p>
+                {{$post['body']}}
+                <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
+                <form action="/delete-post/{{$post->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button>Delete</button>
+                </form>
+            </div>
+            @endforeach
+        </div>
     @else
         <div style="border: 3px solid black; padding:20px;">
             <h2>Register here</h2>
@@ -49,6 +65,6 @@
             </form>
         </div>
     @endauth
-   
+
 </body>
 </html>

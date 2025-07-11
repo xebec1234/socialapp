@@ -8,26 +8,28 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {   
-
+    //login 
     public function login(Request $request) {
         //validation of incoming data
         $validate = $request->validate([
             'username' => 'required',
             'userpassword' => 'required',
         ]);
-        //validation if user is existing in database
+        //validate if user is existing in database
         if(auth()->attempt(['name' => $validate['username'], 'password' => $validate['userpassword']])) {
             $request->session()->regenerate();
         }
 
         return redirect('/');
     }
-
+    
+    //logout
     public function logout() {
         auth()->logout();
         return redirect('/');
     }
 
+    //register
     public function register(Request $request) {
         //validation of incoming data
         $validated = $request->validate([
