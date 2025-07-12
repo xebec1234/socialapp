@@ -12,9 +12,19 @@
         <div class="flex min-h-screen">
 
             <!-- Sidebar -->
-            <aside class="w-64 bg-white shadow-md p-6 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-2xl font-bold text-green-600 mb-6">Hello, {{ auth()->user()->name }} 👋</h2>
+            <aside class="sticky top-0 h-screen w-64 bg-white shadow-md p-6 flex flex-col justify-between">
+                
+               <div>
+                    <!-- Logo -->
+                    <div class="flex items-center mb-2">
+                        <img src="{{ asset('favicon.ico') }}" alt="Socio App Logo" class="w-16 h-16">
+                        <h2>SocioAapp</h2>
+                    </div>
+
+                    <!-- Welcome Text -->
+                    <h2 class="text-xl font-bold text-green-600">
+                        Hello, {{ auth()->user()->name }} 👋
+                    </h2>
                 </div>
                 <form action="/logout" method="POST">
                     @csrf
